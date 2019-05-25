@@ -20,6 +20,13 @@ muteRouter.subcrice(params => {
 })
 ```
 
+navigate
+```js
+muteRouter.navigate({sort: "Created", order: "ASC"});
+// or
+muteRouter.navigateTo(path, {sort: "Created", order: "ASC"});
+```
+
 // unsubcrice
 ```js
 muteRouter.unsubcrice();
