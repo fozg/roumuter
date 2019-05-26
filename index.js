@@ -1,13 +1,18 @@
-// const Store = require('./Store');
+import Store from './Store';
 class RouterMute {
   constructor({ path, params } = {}) {
     // super({});
     this.path = path;
     this.params = params || [];
+    this.Store = new Store(this.params);
   }
 
   navigate(navigateParams) {
     // this.setData(this.filterParams(params));
+  }
+
+  subscribe(cb) {
+    this.Store.subscribe(cb);
   }
 
   filterParams(rawParams = {}) {
