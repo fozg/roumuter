@@ -1,0 +1,25 @@
+{
+  "name": "routermute",
+  "version": "0.0.1",
+  "description": "Support push state to history without navigate.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fozg/mute-router.git"
+  },
+  "author": "Fozg",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fozg/mute-router/issues"
+  },
+  "homepage": "https://github.com/fozg/mute-router#readme",
+  "devDependencies": {
+    "jest": "^24.8.0"
+  },
+  "dependencies": {
+    "query-string": "^6.5.0"
+  }
+}

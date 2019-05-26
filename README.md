@@ -1,33 +1,33 @@
-# mute-router
+# routermute
 Support push state to history without navigate.
 
 ## usage
 import lib:
 ```js
-import MuteRouter from 'mute-router'
+import RouterMute from 'routermute'
 ```
-create MuteRouter store and subcrice
+create RouterMute store and subcrice
 ```js
-var muteRouter = new MuteRouter({
+var RouterMute = new RouterMute({
   path: '', // optional
   params: ["sort", "order"] // support object, arrays of string key
 })
 
 // subcrice changed
-muteRouter.subcrice(params => {
+RouterMute.subcrice(params => {
   // => params: {sort: "..", order: ".."}
-  // all search query string u define at `params` of MuteRouter.
+  // all search query string u define at `params` of RouterMute.
 })
 ```
 
 navigate
 ```js
-muteRouter.navigate({sort: "Created", order: "ASC"});
+RouterMute.navigate({sort: "Created", order: "ASC"});
 // or
-muteRouter.navigateTo(path, {sort: "Created", order: "ASC"});
+RouterMute.navigateTo(path, {sort: "Created", order: "ASC"});
 ```
 
 // unsubcrice
 ```js
-muteRouter.unsubcrice();
+RouterMute.unsubcrice();
 ```
