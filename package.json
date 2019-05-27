@@ -28,13 +28,16 @@
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^24.7.1",
-    "jest": "^24.8.0"
+    "jest": "^24.8.0",
+    "jest-environment-jsdom": "^24.8.0",
+    "jest-environment-jsdom-global": "^1.2.0",
+    "jsdom": "^15.1.0"
   },
   "dependencies": {
     "query-string": "^6.5.0"
   },
   "jest": {
-    "testEnvironment": "node"
+    "testEnvironment": "jest-environment-jsdom-global"
   },
   "windows": {
     "program": "${workspaceFolder}/node_modules/jest-cli/bin/jest"
