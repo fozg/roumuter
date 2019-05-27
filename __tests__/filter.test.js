@@ -5,6 +5,11 @@ test('filter by params array should works', () => {
     path: "/test",
     params: ["sort", "order"]
   });
+  console.log( RouterM.filterParams({
+    sort: "created",
+    order: "asc",
+    unuseParam: "testing"
+  }))
   expect(
     RouterM.filterParams({
       sort: "created",

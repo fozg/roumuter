@@ -32,5 +32,11 @@
   },
   "dependencies": {
     "query-string": "^6.5.0"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "windows": {
+    "program": "${workspaceFolder}/node_modules/jest-cli/bin/jest"
   }
 }
