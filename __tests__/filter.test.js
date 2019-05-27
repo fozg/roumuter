@@ -1,23 +1,19 @@
-const RouterMute = require("../index");
+const RouterMute = require('../index');
 
 test('filter by params array should works', () => {
   const RouterM = new RouterMute({
-    path: "/test",
-    params: ["sort", "order"]
+    path: '/test',
+    params: ['sort', 'order']
   });
-  console.log( RouterM.filterParams({
-    sort: "created",
-    order: "asc",
-    unuseParam: "testing"
-  }))
+
   expect(
     RouterM.filterParams({
-      sort: "created",
-      order: "asc",
-      unuseParam: "testing"
+      sort: 'created',
+      order: 'asc',
+      unuseParam: 'testing'
     })
   ).toEqual({
-    sort: "created",
-    order: "asc"
+    sort: 'created',
+    order: 'asc'
   });
 });
