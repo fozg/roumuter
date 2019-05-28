@@ -5,8 +5,8 @@
   "scripts": {
     "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir lib",
     "build:es": "babel src --out-dir es",
-    "build:umd": "cross-env NODE_ENV=development rollup -c -o dist/react-light-state.js",
-    "build:umd:min": "cross-env NODE_ENV=production rollup -c -o dist/react-light-state.min.js",
+    "build:umd": "cross-env NODE_ENV=development rollup -c -o dist/roumuter.js",
+    "build:umd:min": "cross-env NODE_ENV=production rollup -c -o dist/roumuter.min.js",
     "build": "npm run build:commonjs && npm run build:es && npm run build:umd && npm run build:umd:min",
     "clean": "rimraf lib dist es coverage",
     "format": "prettier --write \"{src,test}/**/*.{js,ts}\" index.d.ts \"docs/**/*.md\"",
@@ -26,7 +26,7 @@
     "url": "https://github.com/fozg/roumuter/issues"
   },
   "main": "./lib/index.js",
-  "unpkg": "dist/react-light-state.js",
+  "unpkg": "dist/roumuter.js",
   "module": "es/index.js",
   "files": [
     "dist",

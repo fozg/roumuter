@@ -1,8 +1,26 @@
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
-  (global = global || self, global.ReactLightState = factory());
+  (global = global || self, global.Roumuter = factory());
 }(this, function () { 'use strict';
+
+  function _extends() {
+    _extends = Object.assign || function (target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+
+      return target;
+    };
+
+    return _extends.apply(this, arguments);
+  }
 
   var Store =
   /*#__PURE__*/
@@ -442,7 +460,7 @@
           params = _ref.params;
 
       // super({});
-      this.path = path;
+      this.path = path || (isBrowser ? window.location.pathname : "");
       this.params = params || [];
       this.Store = new Store({});
     }
@@ -458,15 +476,61 @@
     };
 
     _proto.navigate = function navigate(navigateParams) {
-      this.Store.setData(this.filterParams(navigateParams));
+      var currentParams = this.Store.getData();
+
+      var newParams = _extends({}, currentParams, navigateParams);
+
+      if (isBrowser) {
+        window.history.pushState(null, null, this.path + "?" + queryString.stringify(newParams));
+      }
+
+      this.Store.setData(this.filterParams(newParams));
+    };
+
+    _proto.navigate_remove = function navigate_remove(objects, isArrayValue) {
+      var _this = this;
+
+      var currentParams = this.Store.getData();
+      var newParams = Object.assign({}, currentParams);
+      Object.keys(objects).forEach(function (key) {
+        var value = objects[key];
+
+        if (newParams.hasOwnProperty(key)) {
+          if (isArrayValue) {
+            var newValue = newParams[key].split(",");
+            newValue.splice(newValue.findIndex(function (o) {
+              return o === value;
+            }), 1);
+            newParams[key] = newValue.join(",");
+          } else {
+            newParams[key] = null;
+          }
+        }
+
+        window.history.pushState(null, null, _this.path + "?" + queryString.stringify(newParams));
+
+        _this.Store.setData(_this.filterParams(newParams));
+      });
+    };
+
+    _proto.reset = function reset() {
+      if (isBrowser) {
+        window.history.pushState(null, null, this.path + "?" + queryString.stringify(this.params));
+      }
+
+      this.Store.setData(this.filterParams(this.params));
     };
 
     _proto.subscribe = function subscribe(cb) {
       this.Store.subscribe(cb);
     };
 
+    _proto.getSearchParmas = function getSearchParmas() {
+      return this.Store.data;
+    };
+
     _proto.filterParams = function filterParams(rawParams) {
-      var _this = this;
+      var _this2 = this;
 
       if (rawParams === void 0) {
         rawParams = {};
@@ -475,16 +539,16 @@
       if (Array.isArray(this.params)) {
         var result = {};
         Object.keys(rawParams).filter(function (key) {
-          return _this.params.includes(key);
+          return _this2.params.includes(key);
         }).forEach(function (key) {
           result[key] = rawParams[key];
         });
         return result;
-      } else if (typeof this.params === 'object') {
+      } else if (typeof this.params === "object") {
         if (Object.keys(rawParams).length !== 0) {
           var result = {};
           Object.keys(rawParams).filter(function (key) {
-            return Object.keys(_this.params).includes(key);
+            return Object.keys(_this2.params).includes(key);
           }).forEach(function (key) {
             result[key] = rawParams[key];
           });
