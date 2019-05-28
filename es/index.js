@@ -2,10 +2,10 @@ import Store from './Store';
 import querystring from 'query-string';
 import { isBrowser } from './utils';
 
-var RouterMute =
+var Roumuter =
 /*#__PURE__*/
 function () {
-  function RouterMute(_temp) {
+  function Roumuter(_temp) {
     var _ref = _temp === void 0 ? {} : _temp,
         path = _ref.path,
         params = _ref.params;
@@ -16,7 +16,7 @@ function () {
     this.Store = new Store({});
   }
 
-  var _proto = RouterMute.prototype;
+  var _proto = Roumuter.prototype;
 
   _proto.init = function init() {
     if (isBrowser) {
@@ -54,7 +54,7 @@ function () {
     }
   };
 
-  return RouterMute;
+  return Roumuter;
 }();
 
-module.exports = RouterMute;
+export { Roumuter as default };

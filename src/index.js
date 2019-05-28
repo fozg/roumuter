@@ -2,7 +2,7 @@ import Store from './Store';
 import querystring from 'query-string';
 import { isBrowser } from './utils';
 
-class RouterMute {
+export default class Roumuter {
   constructor({ path, params } = {}) {
     // super({});
     this.path = path;
@@ -37,10 +37,18 @@ class RouterMute {
           result[key] = rawParams[key];
         });
       return result;
-    } else {
-      return {};
-    }
+    } else if (typeof this.params === 'object') {
+      if (Object.keys(rawParams).length !== 0) {
+        var result = {};
+        Object.keys(rawParams)
+          .filter(key => Object.keys(this.params).includes(key))
+          .forEach(key => {
+            result[key] = rawParams[key];
+          });
+        return result;
+      } else {       
+        return this.params;
+      }
+    } else return {};
   }
 }
-
-module.exports = RouterMute;

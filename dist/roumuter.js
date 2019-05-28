@@ -1,7 +1,8 @@
-(function (factory) {
+(function (global, factory) {
+  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
-  factory();
-}(function () { 'use strict';
+  (global = global || self, global.ReactLightState = factory());
+}(this, function () { 'use strict';
 
   var Store =
   /*#__PURE__*/
@@ -432,10 +433,10 @@
   var isNode = typeof global !== 'undefined';
   var isBrowser = typeof window !== 'undefined' || isNode && typeof global.window !== 'undefined';
 
-  var RouterMute =
+  var Roumuter =
   /*#__PURE__*/
   function () {
-    function RouterMute(_temp) {
+    function Roumuter(_temp) {
       var _ref = _temp === void 0 ? {} : _temp,
           path = _ref.path,
           params = _ref.params;
@@ -446,7 +447,7 @@
       this.Store = new Store({});
     }
 
-    var _proto = RouterMute.prototype;
+    var _proto = Roumuter.prototype;
 
     _proto.init = function init() {
       if (isBrowser) {
@@ -484,9 +485,9 @@
       }
     };
 
-    return RouterMute;
+    return Roumuter;
   }();
 
-  module.exports = RouterMute;
+  return Roumuter;
 
 }));
