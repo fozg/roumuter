@@ -9,14 +9,12 @@ const env = process.env.NODE_ENV
 
 const config = {
   input: 'src/index.js',
-  external: Object.keys(pkg.peerDependencies || {}).concat('react-dom'),
+  external: Object.keys(pkg.peerDependencies || {}),
   output: {
     format: 'umd',
-    name: 'ReactLightState',
+    name: 'roumuter',
     globals: {
-      react: 'React',
-      reactLightState: 'ReactLightState',
-      'react-dom': 'ReactDOM'
+      roumuter: 'Roumuter',
     }
   },
   plugins: [

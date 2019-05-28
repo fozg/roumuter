@@ -49,9 +49,19 @@ function () {
         result[key] = rawParams[key];
       });
       return result;
-    } else {
-      return {};
-    }
+    } else if (typeof this.params === 'object') {
+      if (Object.keys(rawParams).length !== 0) {
+        var result = {};
+        Object.keys(rawParams).filter(function (key) {
+          return Object.keys(_this.params).includes(key);
+        }).forEach(function (key) {
+          result[key] = rawParams[key];
+        });
+        return result;
+      } else {
+        return this.params;
+      }
+    } else return {};
   };
 
   return Roumuter;

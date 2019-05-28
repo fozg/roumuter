@@ -1,19 +1,20 @@
 {
   "name": "roumuter",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Support push state to history without navigate.",
   "scripts": {
     "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir lib",
     "build:es": "babel src --out-dir es",
-    "build:umd": "cross-env NODE_ENV=development rollup -c -o dist/roumuter.js",
-    "build:umd:min": "cross-env NODE_ENV=production rollup -c -o dist/roumuter.min.js",
+    "build:umd": "cross-env NODE_ENV=development rollup -c -o dist/react-light-state.js",
+    "build:umd:min": "cross-env NODE_ENV=production rollup -c -o dist/react-light-state.min.js",
     "build": "npm run build:commonjs && npm run build:es && npm run build:umd && npm run build:umd:min",
     "clean": "rimraf lib dist es coverage",
     "format": "prettier --write \"{src,test}/**/*.{js,ts}\" index.d.ts \"docs/**/*.md\"",
     "lint": "eslint src test/utils test/components",
     "prepare": "npm run clean && npm run build",
     "pretest": "npm run lint",
-    "test": "jest"
+    "test": "jest",
+    "coverage": "codecov"
   },
   "repository": {
     "type": "git",
@@ -66,5 +67,10 @@
   },
   "windows": {
     "program": "${workspaceFolder}/node_modules/jest-cli/bin/jest"
+  },
+  "browserify": {
+    "transform": [
+      "loose-envify"
+    ]
   }
 }
