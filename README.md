@@ -1,33 +1,33 @@
-# routermute
+# roumuter
 Support push state to history without navigate.
 
 ## usage
 import lib:
 ```js
-import RouterMute from 'routermute'
+import Roumuter from 'roumuter'
 ```
-create RouterMute store and subscribe
+create Roumuter store and subscribe
 ```js
-var RouterMute = new RouterMute({
+var Roumuter = new Roumuter({
   path: '', // optional
   params: ["sort", "order"] // support object, arrays of string key
 })
 
 // subscribe changed
-RouterMute.subscribe(params => {
+Roumuter.subscribe(params => {
   // => params: {sort: "..", order: ".."}
-  // all search query string u define at `params` of RouterMute.
+  // all search query string u define at `params` of Roumuter.
 })
 ```
 
 navigate
 ```js
-RouterMute.navigate({sort: "Created", order: "ASC"});
+Roumuter.navigate({sort: "Created", order: "ASC"});
 // or
-RouterMute.navigateTo(path, {sort: "Created", order: "ASC"});
+Roumuter.navigateTo(path, {sort: "Created", order: "ASC"});
 ```
 
 // unsubscribe
 ```js
-RouterMute.unsubscribe();
+Roumuter.unsubscribe();
 ```
